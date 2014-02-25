@@ -2,8 +2,46 @@
   margin: 20px auto;
   width: 600px;
   padding: 0px 20px 20px 20px;
-  border: 1px dotted black;
-}
+  border: 1px dotted black; }
 th {
-  text-align: left;
-}
+  text-align: left; }
+
+fieldset {
+	margin-left: auto;
+	margin-right: auto;
+	max-width: 25%;
+	margin-bottom: 5px;
+	background-color: orange; }
+input {
+	border: 1px solid #666;
+	padding: 6px 4px;
+	-moz-border-radius: 2px;
+	-webkit-border-radius: 2px;
+	border-radius: 2px;
+	font: 13px sans-serif;
+	color: #555;
+	margin: 0;
+	width: 200px;
+	max-width: 100%;
+	display: inline-block;
+	margin-bottom: 5px;
+	background: #fff; }
+input[type="password"] {
+	float: left;
+	max-width: 55%;}
+button {
+	background: #eee -webkit-linear-gradient(top, rgba(255,255,255,.2) 0%,rgba(0,0,0,.2) 100%); /* Chrome10+,Safari5.1+ */
+	float: right;
+	border: 1px solid #aaa;
+	border-top: 1px solid #ccc;
+	border-left: 1px solid #ccc;
+	border-radius: 2px;
+	color: #666;
+	display: inline-block;
+	font-size: 11px;
+	font-weight: bold;
+	text-shadow: 0 1px rgba(255, 255, 255, .75);
+	margin-bottom: 5px;
+	line-height: normal;
+	padding: 8px 10px;
+	font-family: sans-serif; }
