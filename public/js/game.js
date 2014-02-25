@@ -1,4 +1,5 @@
 $(document).ready(function() {
+// Treehouse Team tutorial variable set up and hoisting.
   var counter_p1 = 0;
   var counter_p2 = 0;
   var p1 = document.getElementById("player1_strip");
@@ -9,7 +10,7 @@ $(document).ready(function() {
   var raceTime;
   var winner;
 
-  // AJAX function from JQuery API Docs.
+// AJAX function from JQuery API Docs.
   function ajax_results(params) {
     $.ajax({
       url: "/end_game",
@@ -25,8 +26,8 @@ $(document).ready(function() {
   function endGame(player){
     counter_p1++;
     counter_p2++;
-    
-    // W3 Schools info for Date Time objects.
+
+// W3 Schools info for Date Time objects.
     var date = new Date();
     endTime = date.getTime();
     gameTime = (endTime - startTime)/1000;
