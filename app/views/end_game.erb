@@ -1,5 +1,6 @@
 <div class="container">
   <h1>Game Over</h1>
-  <p>Player X Wins</p>
-  <p>Total Game Time</p>
+    <p>Winner is <%= Player.find(@game.winner).name.capitalize %></p>
+    <p>Game Time: <%= @game.game_time %> seconds.</p>
+  <a href="/">Play Again</a>
 </div>

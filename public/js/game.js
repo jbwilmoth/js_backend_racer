@@ -23,8 +23,8 @@ $(document).ready(function() {
   function endGame(player){
     counter_p1++;
     counter_p2++;
-    var d = new Date();
-    endTime = d.getTime();
+    var date = new Date();
+    endTime = date.getTime();
     gameTime = (endTime - startTime)/1000;
     $(winner).text("Player" + player + "wins in" + raceTime + "seconds.");
     winner = player;
