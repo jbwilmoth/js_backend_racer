@@ -9,20 +9,22 @@ $(document).ready(function() {
   var raceTime;
   var winner;
 
+  // AJAX requesting
   function ajax_results(params) {
     $.ajax({
       url: "/end_game",
       type: "POST",
-      data: stuff
+      data: params
     })
     .done(function (data) {
-      window.location = "/gameover";
+      window.location = "/end_game";
     })
   };
 
   function endGame(player){
     counter_p1++;
     counter_p2++;
+    // W3 Schools info for Date Time objects.
     var date = new Date();
     endTime = date.getTime();
     gameTime = (endTime - startTime)/1000;
@@ -33,7 +35,8 @@ $(document).ready(function() {
   };
 
 
-// Game logic from JavaScript 1 Racer App.
+// Refactored Game logic from JavaScript 1 Racer App.
+// Player keys are P's & Q's
   $(document).on('keyup', function(event) {
     if(counter_p1 == 0 && counter_p2 == 0 && (event.keyCode === 81 || event.keyCode === 80)){
       var date = new Date();
