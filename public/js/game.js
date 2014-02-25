@@ -18,6 +18,7 @@ $(document).ready(function() {
       data: params
     })
     .done(function (data) {
+// Navigates the window to a new view by using the data from the AJAX.
       window.location = "/end_game";
     })
   };
