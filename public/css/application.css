@@ -5,7 +5,18 @@
   border: 1px dotted black; }
 th {
   text-align: left; }
-
+table.racer_table {
+	margin-left: auto;
+	margin-right: auto; }
+.racer_table td {
+	background-color: white;
+	height: 20px;
+	width: 20px;
+	border: solid 1px; }
+.racer_table td.active {
+	background-color: black; }
+.racer_table td.inactive {
+	background-color: grey; }
 fieldset {
 	margin-left: auto;
 	margin-right: auto;
