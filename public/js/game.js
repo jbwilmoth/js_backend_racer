@@ -26,7 +26,7 @@ $(document).ready(function() {
     var date = new Date();
     endTime = date.getTime();
     gameTime = (endTime - startTime)/1000;
-    $(winner).text("Player" + player + "wins in" + raceTime + "seconds.");
+    $(winner).text("Player " + player + " wins in " + raceTime + " seconds.");
     winner = player;
     var results = {game_time: gameTime, winner: winner};
     ajax_results(results);
