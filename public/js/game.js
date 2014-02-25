@@ -25,6 +25,7 @@ $(document).ready(function() {
   function endGame(player){
     counter_p1++;
     counter_p2++;
+    
     // W3 Schools info for Date Time objects.
     var date = new Date();
     endTime = date.getTime();
@@ -32,9 +33,10 @@ $(document).ready(function() {
     $(winner).text("Player " + player + " wins in " + raceTime + " seconds.");
     winner = player;
     var results = {game_time: gameTime, winner: winner};
+
+// Calls the ajax results for the winner of the game.    
     ajax_results(results);
   };
-
 
 // Refactored Game logic from JavaScript 1 Racer App.
 // Player keys are P's & Q's
@@ -51,7 +53,6 @@ $(document).ready(function() {
         $(p1.cells[counter_p1 + 1]).addClass("active");
         counter_p1++;
       };
-
       if(event.keyCode === 80) {
 
 // Incrementing player 2 across the table by removing and adding the active class.
