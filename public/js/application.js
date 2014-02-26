@@ -1,7 +1,3 @@
-
-
-//view
-// Game Object Prototype.
 var Game = function(player1,player2) {
   this.player1 = player1;
   this.player2 = player2;
@@ -9,7 +5,6 @@ var Game = function(player1,player2) {
   this.endTime;
   this.raceTime;
   this.winner;
-  this.date = new Date();
   this.trackLength = this.player1.track.cells.length;
 
   this.onKeyUp = function(event){
@@ -31,7 +26,6 @@ var Game = function(player1,player2) {
       }
     }
   }
-
 // Refactor
   this.render = function(){
     $(this.player1.track.cells[this.player1.counter - 1]).removeClass("active");
@@ -39,13 +33,13 @@ var Game = function(player1,player2) {
     $(this.player2.track.cells[this.player2.counter - 1]).removeClass("active");
     $(this.player2.track.cells[this.player2.counter]).addClass("active");
   }
-
   this.start = function(){
-    this.startTime = this.date.getTime();
+    var date = new Date();
+    this.startTime = date.getTime();
   }
-
   this.finish = function(winner){
-    this.endTime = this.date.getTime();
+    var date = new Date();
+    this.endTime = date.getTime();
     this.raceTime = (this.endTime - this.startTime)/1000;
     this.winner = winner;
     $(document).off('keyup');
@@ -61,18 +55,14 @@ var Player = function(name, track){
   this.advance = function(){
     return this.counter++;
   }
-
 };
 
-
 $(document).ready(function() {
-
   var player1 = new Player("Jeff","player1_strip");
   var player2 = new Player("Joe","player2_strip");
   var game = new Game(player1, player2);
-
+  window.game = game;
   $(document).on('keyup', function(event) {
     game.onKeyUp(event.which);
   });
 });
-
