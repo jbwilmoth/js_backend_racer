@@ -1,3 +1,6 @@
+// This is a OO JavaScript File I am working on 
+// that will drop the backend and run browser only.
+
 var Game = function(player1,player2) {
   this.player1 = player1;
   this.player2 = player2;
