@@ -1,7 +1,24 @@
-$(document).ready(function() {
+var game;
 
+//view
 // Game Object Prototype.
 var Game = function() {
+  
+};
+
+var Players = function(){
+
+};
+
+Game.prototype.render = function() {
+	// Updates DOM to reflect current game state
+	// Does not modify game state at all.
+};
+
+
+
+$(document).ready(function() {
+
 // Treehouse Team tutorial variable set up and hoisting.
   var counter_p1 = 0;
   var counter_p2 = 0;
@@ -12,8 +29,7 @@ var Game = function() {
   var endTime;
   var raceTime;
   var winner;
- };
-
+ 
 // AJAX function from JQuery API Docs.
   function ajax_results(params) {
     $.ajax({
