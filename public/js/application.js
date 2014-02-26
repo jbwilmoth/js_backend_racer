@@ -1,96 +1,78 @@
-var game;
+
 
 //view
 // Game Object Prototype.
-var Game = function() {
-  
+var Game = function(player1,player2) {
+  this.player1 = player1;
+  this.player2 = player2;
+  this.startTime;
+  this.endTime;
+  this.raceTime;
+  this.winner;
+  this.date = new Date();
+  this.trackLength = this.player1.track.cells.length;
+
+  this.onKeyUp = function(event){
+    if(this.player1.counter === 0 && this.player2.counter === 0){
+      this.start();
+    }
+    if(event === 81){
+      this.player1.advance(this.player1.counter);
+      this.render();
+      if(this.player1.counter === this.trackLength){
+        this.finish(this.player1);
+      }
+    }
+    if(event === 80){
+      this.player2.advance();
+      this.render();
+      if(this.player2.counter === this.trackLength){
+        this.finish(this.player2);
+      }
+    }
+  }
+
+// Refactor
+  this.render = function(){
+    $(this.player1.track.cells[this.player1.counter - 1]).removeClass("active");
+    $(this.player1.track.cells[this.player1.counter]).addClass("active");
+    $(this.player2.track.cells[this.player2.counter - 1]).removeClass("active");
+    $(this.player2.track.cells[this.player2.counter]).addClass("active");
+  }
+
+  this.start = function(){
+    this.startTime = this.date.getTime();
+  }
+
+  this.finish = function(winner){
+    this.endTime = this.date.getTime();
+    this.raceTime = (this.endTime - this.startTime)/1000;
+    this.winner = winner;
+    $(document).off('keyup');
+    console.log("Yay. The winner is " + winner.name);
+  }
 };
 
-var Players = function(){
+var Player = function(name, track){
+  this.name = name;
+  this.track = document.getElementById(track);
+  this.counter = 0;
+
+  this.advance = function(){
+    return this.counter++;
+  }
 
 };
-
-Game.prototype.render = function() {
-	// Updates DOM to reflect current game state
-	// Does not modify game state at all.
-};
-
 
 
 $(document).ready(function() {
 
-// Treehouse Team tutorial variable set up and hoisting.
-  var counter_p1 = 0;
-  var counter_p2 = 0;
-  var p1 = document.getElementById("player1_strip");
-  var p2 = document.getElementById("player2_strip");
-  var winner = document.getElementById("winner");
-  var startTime;
-  var endTime;
-  var raceTime;
-  var winner;
- 
-// AJAX function from JQuery API Docs.
-  function ajax_results(params) {
-    $.ajax({
-      url: "/end_game",
-      type: "POST",
-      data: params
-    })
-    .done(function (data) {
-// Navigates the window to a new view by using the data from the AJAX.
-      window.location = "/end_game";
-    })
-  };
+  var player1 = new Player("Jeff","player1_strip");
+  var player2 = new Player("Joe","player2_strip");
+  var game = new Game(player1, player2);
 
-// Function to keep up with player increments and game time to determine a winner.
-  function endGame(player){
-    counter_p1++;
-    counter_p2++;
-
-// W3 Schools info for Date Time objects.
-    var date = new Date();
-    endTime = date.getTime();
-    gameTime = (endTime - startTime)/1000;
-    $(winner).text("Player " + player + " wins in " + raceTime + " seconds.");
-    winner = player;
-    var results = {game_time: gameTime, winner: winner};
-
-// Calls the ajax results for the winner of the game.    
-    ajax_results(results);
-  };
-
-// Refactored Game logic from JavaScript 1 Racer App.
-// Player keys are P's & Q's
   $(document).on('keyup', function(event) {
-    if(counter_p1 == 0 && counter_p2 == 0 && (event.keyCode === 81 || event.keyCode === 80)){
-      var date = new Date();
-      startTime = date.getTime();
-    };
-    if(counter_p1 < p1.cells.length && counter_p2 < p2.cells.length){
-      if(event.keyCode === 81) {
-
-// Incrementing player 1 across the table by removing and adding the active class.
-        $(p1.cells[counter_p1]).removeClass("active");
-        $(p1.cells[counter_p1 + 1]).addClass("active");
-        counter_p1++;
-      };
-      if(event.keyCode === 80) {
-
-// Incrementing player 2 across the table by removing and adding the active class.
-        $(p2.cells[counter_p2]).removeClass("active");
-        $(p2.cells[counter_p2 + 1]).addClass("active");
-        counter_p2++;
-      };
-    };
-
-// If either player is at the end of the table by cell length. Game Over.
-    if (counter_p1 == p1.cells.length){
-      endGame("1");
-    };
-
-    if (counter_p2 == p2.cells.length){
-      endGame("2");
-    };
+    game.onKeyUp(event.which);
   });
 });
+
